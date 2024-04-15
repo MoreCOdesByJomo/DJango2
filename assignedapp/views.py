@@ -13,5 +13,8 @@ def register(request):
 def login(request):
     template = loader.get_template('login.html')
     return HttpResponse(template.render())
+def logs(request):
+    template = loader.get_template('dashboard.html')
+    return HttpResponse(template.render())
 
 # Create your views here.
