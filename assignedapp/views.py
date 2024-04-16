@@ -1,8 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
+from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_exempt
+from .models import Register
+
 def home(request):
-    template = loader.get_template('home.html')
+    template = loader.get_template('base.html')
     return HttpResponse(template.render())
 def aboutus(request):
     template = loader.get_template('aboutus.html')
@@ -16,5 +20,21 @@ def login(request):
 def logs(request):
     template = loader.get_template('dashboard.html')
     return HttpResponse(template.render())
+
+@csrf_exempt
+def addstudent(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        age = request.POST.get('age')
+        country = request.POST.get('country')
+
+        member1=register(name=name,age=age,country=country)
+        member1.save()
+        #fetch the member's data to be displayed
+        """
+        data = Register.objects.all():
+        context = {'data': data}
+        """
+        return render(request,'dashboard.html')
 
 # Create your views here.
