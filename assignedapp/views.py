@@ -24,11 +24,11 @@ def logs(request):
 @csrf_exempt
 def addstudent(request):
     if request.method == 'POST':
-        name = request.POST.get('name')
+        name = request.POST.get('govtname')
         age = request.POST.get('age')
-        country = request.POST.get('country')
+        country = request.POST.get('cntry')
 
-        member1=register(name=name,age=age,country=country)
+        member1=Register(name=name,age=age,country=country)
         member1.save()
         #fetch the member's data to be displayed
         """
