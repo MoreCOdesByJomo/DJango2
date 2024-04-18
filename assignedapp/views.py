@@ -31,10 +31,38 @@ def addstudent(request):
         member1=Register(name=name,age=age,country=country)
         member1.save()
         #fetch the member's data to be displayed
-        """
-        data = Register.objects.all():
+
+        data = Register.objects.all();
         context = {'data': data}
-        """
         return render(request,'dashboard.html')
 
+def editstudent(request,id):
+    data = Register.objects.get(id=id)
+    context = {'data': data}
+    return render(request, 'updates.html',context)
+
+
+
+def updatestudent(request,id):
+    if request.method == 'POST':
+        name = request.POST.get('govtname')
+        age = request.POST.get('age')
+        country = request.POST.get('cntry')
+        #modify the student detais based on the student id gven
+        editstudent = Register.objects.get(id=id)
+        editstudent.name=name
+        editstudent.age=age
+        editstudent.country=country
+        editstudent.save()
+    return redirect('/dashboard')
+def deltestudent(request,id):
+    deletestudent = Register.objects.get(id=id)
+    deletestudent.delete()
+    return redirect('/dasboard')
+
+
+def dashboard(request):
+    data=Register.objects.all()
+    context = {'data': data}
+    return render(request,'dashboard.html',context)
 # Create your views here.
