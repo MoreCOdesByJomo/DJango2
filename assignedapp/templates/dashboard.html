@@ -53,8 +53,7 @@ tr:nth-child(even) {
         </div>
     </div>
         <div class="col-md-7" style="border-right: 1px ">
-            <h2>GYMRATS Table</h2>
-
+            <h2>GYMRATS </h2>
 
 <table>
   <tr>
@@ -71,14 +70,15 @@ tr:nth-child(even) {
         <td>{{ gymbro.age   }}</td>
         <td>{{ gymbro.country  }}</td>
         <td>
-            <a href="/editstudent{{ gymbro.id }}" type="button" class="btn btn-outline-success">Edit</a>
+            <a href="/editstudent/{{ gymbro.id }}" type="button" class="btn btn-outline-success">Edit</a>
 
         </td>
         <td>
-            <a href="/deletestudent{{ gymbro.id }}" type="button" class="btn btn-outline-danger">Delete</a>
+            <a href="/deletestudent/{{ gymbro.id }}" type="button" class="btn btn-outline-danger">Delete</a>
 
         </td>
     </tr>
+    {% endfor %}
     </tbody>
 
 

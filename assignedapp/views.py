@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.template import loader
 from django.views.decorators.csrf import csrf_protect
@@ -32,9 +32,9 @@ def addstudent(request):
         member1.save()
         #fetch the member's data to be displayed
 
-        data = Register.objects.all();
+        data = Register.objects.all()
         context = {'data': data}
-        return render(request,'dashboard.html')
+        return render(request,'dashboard.html',context)
 
 def editstudent(request,id):
     data = Register.objects.get(id=id)
@@ -55,7 +55,7 @@ def updatestudent(request,id):
         editstudent.country=country
         editstudent.save()
     return redirect('/dashboard')
-def deltestudent(request,id):
+def deletestudent(request,id):
     deletestudent = Register.objects.get(id=id)
     deletestudent.delete()
     return redirect('/dasboard')
